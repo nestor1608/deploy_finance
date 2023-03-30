@@ -1,0 +1,6 @@
+scikit-learn
+plotly
+yfinance
+pandas_datareader
+numpy
+streamlit==1.20.0
