@@ -1,6 +1,7 @@
 import pandas as pd
 import yfinance as yf
 import numpy as np
+from suport_streamli import * 
 
 start_date = "2000-01-01"
 end_date = "2023-01-27"
@@ -32,3 +33,10 @@ def value_extreme(data,select):
     elif select == 'Low':
         data= syp.groupby(syp.index.year).min()
     return data
+
+def top_ten(select):
+    if select == 'mean_total':
+        top=close_anual.sort_values('mean_total',ascending=False).index[:10]
+    else:
+        top=close_anual.sort_values('growth',ascending=False).index[:10]
+    return top
