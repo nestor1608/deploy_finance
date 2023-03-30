@@ -18,7 +18,7 @@ cre=creci_porcentaje(anual_syp)
 st.header('Porcentaje de crecimiento año a año')
 fig =px.bar(cre[1])
 st.plotly_chart(fig,use_container_width=True)
-st.markdown(f'* Promedio porcentual anual de : {cre[0]} %')
+st.markdown(f'* Promedio porcentual anual de crecimiento: {cre[0]} %')
 
 st.markdown('***')
 st.header('Filtrar por año')

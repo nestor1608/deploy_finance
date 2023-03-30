@@ -42,8 +42,8 @@ if selecionados:
         
         st.markdown('***')
         st.header('Datos mensuales promedios')
-        st.dataframe(grou,use_container_width=True)
         st.subheader('Valor crecimiento promedio mensuales')
+        st.dataframe(grou,use_container_width=True)
         fig=px.bar(grou['Close'])
         st.plotly_chart(fig,use_container_width=True)
         datos = creci_porcentaje(grou)
