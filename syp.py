@@ -11,7 +11,7 @@ syp = yf.download('^GSPC', start=start_date)
 
 syp=syp.round(3)
 
-anual_syp= syp.groupby(syp.index.year).mean().round()
+anual_syp= syp.groupby(syp.index.year).agg({'Open':'mean','High':'max','Low':'min','Close':'mean','Volume':'mean'}).round()
 anual_syp
 
 def ratio_month(anio,data):

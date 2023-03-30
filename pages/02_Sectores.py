@@ -22,6 +22,9 @@ default = sectores_anual.sort_values('growth',ascending=False).index.values[:5]
 multisectores = st.multiselect('Seleccione sectores a analizar:', sectores, default=default)
 fig=px.line(sectores_anual[sectores_anual.index.isin(multisectores)].transpose())
 st.plotly_chart(fig,use_container_width=True)   
+st.markdown('* Diferenecia de crecimiento promedio porcentual')
+fig=px.bar(sectores_anual[sectores_anual.index.isin(multisectores)].growth)
+st.plotly_chart(fig,use_container_width=True)   
 
 ###----------------------------------------------------------------------------------------------
 
@@ -49,17 +52,17 @@ st.plotly_chart(fig,use_container_width=True)
 
 ##-----------------------------------------------------------------------------------
 
-st.header('Porcentaje promedio de crecimiento por año')
+st.header('Porcentaje promedio de crecimiento anual')
 por_creci=data_sector_mean(sector,creci)
 fig =px.bar(por_creci.transpose())
 st.plotly_chart(fig,use_container_width=True)
 val_cre = (crecimiento.loc[0].pct_change()*100).mean().round(3)
-st.markdown('* Porcentaje promedio de crecimiento:')
+st.markdown('* Potencial de crecimiento de activos')
 fig=go.Figure(go.Scatter(x=[0],y=[0], text=[val_cre],mode='text',textfont=dict(size=52)))
 fig.add_shape(type='circle',xref='x',yref='y',x0=-1,y0=-1,x1=1,y1=1,line=dict(color='royalblue',width=4))
 fig.update_layout(width=200,height=300)
 st.plotly_chart(fig)
-st.markdown('_este valor coresponde a la medicion hasta el 2022_')
+st.markdown('_este valor corresponde a la medicion hasta el 2022_')
 
 ##---------------------------------------------------------------------------------
 st.header(f'{sector}')

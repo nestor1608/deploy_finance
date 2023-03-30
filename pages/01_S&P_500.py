@@ -1,6 +1,6 @@
 import streamlit as st
 import plotly.express as px
-from syp import *
+from syp import value_extreme, creci_porcentaje,syp,ratio_month,anual_syp
 
 st.title('Indice bursatil del S&P 500')
 st.markdown('***')
@@ -34,4 +34,4 @@ fig =px.bar(r_month[1])
 st.plotly_chart(fig,use_container_width=True)
 st.markdown('## Datos agrupados por años')
 st.markdown('***')
-st.table(anual_syp)
+st.dataframe(anual_syp,use_container_width=True)
