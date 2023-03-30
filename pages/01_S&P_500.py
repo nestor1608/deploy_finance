@@ -1,6 +1,7 @@
 import streamlit as st
 import plotly.express as px
-from syp import value_extreme, creci_porcentaje,syp,ratio_month,anual_syp
+import pandas as pd
+from syp import value_extreme, creci_porcentaje,syp,ratio_month,anual_syp,month_sector
 
 st.title('Indice bursatil del S&P 500')
 st.markdown('***')
@@ -12,7 +13,6 @@ select = st.selectbox(label='Metricas',options=anual_syp.columns)
 data=value_extreme(anual_syp,select) 
 fig = px.bar(data, x=data.index,y=data[select] )
 st.plotly_chart(fig,use_container_width=True)
-
 
 cre=creci_porcentaje(anual_syp)
 

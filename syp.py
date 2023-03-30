@@ -2,7 +2,7 @@ import pandas as pd
 import yfinance as yf
 import numpy as np
 from suport_streamli import * 
-
+from dataset_conect import sypActual
 start_date = "2000-01-01"
 end_date = "2023-01-27"
 
@@ -40,3 +40,11 @@ def top_ten(select):
     else:
         top=close_anual.sort_values('growth',ascending=False).index[:10]
     return top
+
+
+def month_sector(select,anio):
+    
+    x=cierre[select]
+    anio=x[x.index.year==anio]
+    month= anio.groupby(anio.index.month).mean().round()
+    return month

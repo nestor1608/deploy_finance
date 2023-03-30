@@ -3,7 +3,7 @@ import pandas as pd
 from suport_streamli import *
 import plotly.express as px
 import plotly.graph_objs as go
-
+from syp import month_sector
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
@@ -26,6 +26,8 @@ st.markdown('* Diferenecia de crecimiento promedio porcentual')
 fig=px.bar(sectores_anual[sectores_anual.index.isin(multisectores)].growth)
 st.plotly_chart(fig,use_container_width=True)   
 
+
+
 ###----------------------------------------------------------------------------------------------
 
 sector = st.selectbox(label='Sectores',options=sectores)
@@ -35,6 +37,7 @@ fig= scater_plot(data, x='mean_total',y='growth')
 st.plotly_chart(fig,use_container_width=True)
 
 ##-------------------------------------------------------------------------------
+
 st.header('Filtrar x crecimiento y precio promedio ')
 
 growth = st.slider('Crecimiento (growth):',int(data.growth.min().round()),int(data.growth.max().round()),value=int(data.growth.min().round()))
@@ -64,6 +67,11 @@ fig.update_layout(width=200,height=300)
 st.plotly_chart(fig)
 st.markdown('_este valor corresponde a la medicion hasta el 2022_')
 
+
+an = st.slider('Años',2000,2023)
+month_data = month_sector(bussines,an)
+fig = px.line(month_data ,x=month_data.index ,y=month_data.columns)
+st.plotly_chart(fig,use_container_width=True)
 ##---------------------------------------------------------------------------------
 st.header(f'{sector}')
 st.markdown('***')
