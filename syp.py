@@ -25,3 +25,10 @@ def creci_porcentaje(data):
         return cre, f
     except AttributeError:
         return 0,0
+    
+def value_extreme(data,select):
+    if select == 'Open':
+        data = syp.groupby(syp.index.year).max()
+    elif select == 'Low':
+        data= syp.groupby(syp.index.year).min()
+    return data

@@ -7,8 +7,8 @@ st.markdown('***')
 st.subheader('Crecimiento promedio por año')
 
 select = st.selectbox(label='Metricas',options=anual_syp.columns)
-
-fig = px.bar(anual_syp, x=anual_syp.index,y=anual_syp[select] )
+data=value_extreme(anual_syp,select) 
+fig = px.bar(data, x=data.index,y=data[select] )
 st.plotly_chart(fig,use_container_width=True)
 
 
