@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
-
+from syp import top_ten
 import plotly.express as px
 from organi_suport import *
 from suport_streamli import close_anual,searcch_bussines,creci
@@ -9,14 +8,26 @@ from syp import ratio_month,creci_porcentaje
 
 
 st.title('Analisis por Empresas u Organizaciones')
+
+st.subheader('Top 10 Empresas u Organizacion')
+st.markdown('_Puede elegir entre **VALOR DE CRECIMIENTO PROMEDIO("mean_total)** y **PROMEDIO PORCENTUAL DE CRECIMIENTO(growth)**_')
+select1=st.selectbox('Mean_Total / Growth',['mean_total','growth'])
+top=top_ten(select1)
+fig=px.line(close_anual[close_anual.index.isin(top)].transpose())
+st.plotly_chart(fig,use_container_width=True)  
+
+
 st.markdown('***')
 st.markdown('_Aqui podra comparar el crecimiento que tuvieron entre varias empresas(10 max)_')
 selecionados=st.multiselect('Elija empresas u organizaciones',close_anual.index.values,max_selections=10)
 
 fig=px.line(close_anual[close_anual.index.isin(selecionados)].transpose())
-st.plotly_chart(fig,use_container_width=True)   
 
-crecimiento=searcch_bussines(selecionados)
+st.plotly_chart(fig,use_container_width=True)   
+if not selecionados: 
+    crecimiento=searcch_bussines(top)
+else:
+    crecimiento=searcch_bussines(selecionados)
 
 st.header('Datos de las empresas')
 st.markdown('***')
