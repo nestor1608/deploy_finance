@@ -10,8 +10,8 @@ from syp import ratio_month,creci_porcentaje
 
 st.title('Analisis por Empresas u Organizaciones')
 st.markdown('***')
-st.markdown('_Aqui podra comparar el crecimiento que tuvieron entre varias empresas(5 max)_')
-selecionados=st.multiselect('Elija empresas u organizaciones',close_anual.index.values,max_selections=5)
+st.markdown('_Aqui podra comparar el crecimiento que tuvieron entre varias empresas(10 max)_')
+selecionados=st.multiselect('Elija empresas u organizaciones',close_anual.index.values,max_selections=10)
 
 fig=px.line(close_anual[close_anual.index.isin(selecionados)].transpose())
 st.plotly_chart(fig,use_container_width=True)   
