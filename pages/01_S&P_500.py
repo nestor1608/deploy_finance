@@ -1,7 +1,7 @@
 import streamlit as st
 import plotly.express as px
-import pandas as pd
-from syp import value_extreme, creci_porcentaje,syp,ratio_month,anual_syp,month_sector
+
+from syp import value_extreme, creci_porcentaje,syp,ratio_month,anual_syp
 
 st.title('Indice bursatil del S&P 500')
 st.markdown('***')
